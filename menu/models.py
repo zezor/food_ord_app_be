@@ -6,6 +6,9 @@ class MenuItem(models.Model):
     is_available = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     category = models.ForeignKey('Category', on_delete=models.CASCADE)
+    menu_date = models.DateField(blank=True, null=True)
+
+
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
