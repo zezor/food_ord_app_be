@@ -1,7 +1,7 @@
 from django.db import models
 from django.conf import settings
 from menu.models import MenuItem
-from departments.models import Department
+from departments.models import Department, College
 User = settings.AUTH_USER_MODEL
 
 class Order(models.Model):
@@ -25,6 +25,13 @@ class Order(models.Model):
 
     department = models.ForeignKey(
         Department,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL
+    )
+
+    college = models.ForeignKey(
+        College,
         null=True,
         blank=True,
         on_delete=models.SET_NULL

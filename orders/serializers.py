@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from .models import Order, OrderItem
 from menu.models import MenuItem
-from departments.models import Department
+from departments.models import Department, College
 
 class OrderItemSerializer(serializers.ModelSerializer):
     menu_item_id = serializers.PrimaryKeyRelatedField(
@@ -17,18 +17,39 @@ class OrderItemSerializer(serializers.ModelSerializer):
 class OrderSerializer(serializers.ModelSerializer):
     items = OrderItemSerializer(many=True)
 
-    department_id = serializers.PrimaryKeyRelatedField(
+    department = serializers.PrimaryKeyRelatedField(
         queryset=Department.objects.all(),
         source="department",
         required=False,
         allow_null=True
     )
 
-    class Meta:
-        model = Order
-        fields = ['id', 'items', 'total_amount', 'status', 'created_at', 'ordered_at', 'order_type', 'department_id', 'note']
+    college = serializers.PrimaryKeyRelatedField(
+        queryset=College.objects.all(),
+        source="college",
+        required=False,
+        allow_null=True
+    )
 
     
+
+    class Meta:
+            model = Order
+            fields = [
+                "id",
+                "user",
+                "college",
+                "college_id"
+                "department",
+                "department_id",
+                "total_amount",
+                "status",
+                "order_type",
+                "note",
+                "created_at",
+                "items",
+            ]
+        
 
     def create(self, validated_data):
         items_data = validated_data.pop('items')
