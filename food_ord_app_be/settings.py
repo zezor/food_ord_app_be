@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 from pathlib import Path
 import os
 from dotenv import load_dotenv
+import dj_database_url  # We'll install this
 
 
 
@@ -141,11 +142,11 @@ ALLOWED_HOSTS = ["*"]  # Or limit to your Vercel domain
 #         "PORT": os.getenv("DB_PORT", "5432"),
 #     }
 # }
-import dj_database_url  # We'll install this
+
 
 DATABASES = {
     "default": dj_database_url.config(
-        default=os.environ.get("postgresql://postgres:[Rasnaana12@]@db.kdgrklvkhfqikhzdyemk.supabase.co:5432/postgres")
+        default=os.environ.get("postgres://postgres:Rasnaana12%40@db.kdgrklvkhfqikhzdyemk.supabase.co:5432/postgres")
     )
 }
 
@@ -184,6 +185,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
+
+
 
 
 AUTH_USER_MODEL = "accounts.CustomUser"
