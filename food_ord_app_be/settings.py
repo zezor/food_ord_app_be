@@ -145,13 +145,19 @@ ALLOWED_HOSTS = ["*"]  # Or limit to your Vercel domain
 # }
 
 
+# DATABASES = {
+#     "default": dj_database_url.config(
+#         default=os.environ.get("postgres://postgres:Rasnaana12%40@db.kdgrklvkhfqikhzdyemk.supabase.co:5432/postgres")
+#     )
+# }
+
 DATABASES = {
     "default": dj_database_url.config(
-        default=os.environ.get("postgres://postgres:Rasnaana12%40@db.kdgrklvkhfqikhzdyemk.supabase.co:5432/postgres")
+        default=os.environ.get("DATABASE_URL"),
+        conn_max_age=600,
+        ssl_require=True
     )
 }
-
-
 
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
