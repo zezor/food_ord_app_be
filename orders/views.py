@@ -41,12 +41,14 @@ class OrderViewSet(viewsets.ModelViewSet):
             return Order.objects.all().order_by('-created_at')
         return Order.objects.filter(user=user).order_by('-created_at')
 
-    def perform_create(self, serializer):
-        serializer.save(
-            user=self.request.user,
-            department_id=self.request.data.get("department"),
-            college_id=self.request.data.get("college"),
-        )
+    # def perform_create(self, serializer):
+    #     serializer.save(
+    #         user=self.request.user,
+    #         department_id=self.request.data.get("department"),
+    #         college_id=self.request.data.get("college"),
+    #     )
+
+    
 
 
     @action(detail=True, methods=['patch'], serializer_class=OrderStatusUpdateSerializer)
