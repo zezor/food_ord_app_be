@@ -1,16 +1,14 @@
-
 {
   "builds": [
     {
-      "src": "food_ord_app_be/wsgi.py",
-      "use": "@vercel/python",
-      "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
+      "src": "food_ord_app_be/asgi.py",
+      "use": "@vercel/python"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "food_ord_app_be/wsgi.py"
+      "dest": "food_ord_app_be/asgi.py"
     }
   ]
 }
