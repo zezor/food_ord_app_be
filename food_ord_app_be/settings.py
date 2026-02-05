@@ -102,7 +102,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'food_ord_app_be.wsgi.application'
+WSGI_APPLICATION = 'food_ord_app_be.asgi.application'
 
 
 # Database
@@ -129,9 +129,9 @@ load_dotenv()
 # }
 
 
-SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "s8#jr2$tbf84^ulr)la4m6#2n%uwysu8@*ca$-ouat76v2qv&l")
-DEBUG = os.environ.get("DEBUG", "False") == "True"
-ALLOWED_HOSTS = ["*"]  # Or limit to your Vercel domain
+# SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "s8#jr2$tbf84^ulr)la4m6#2n%uwysu8@*ca$-ouat76v2qv&l")
+# DEBUG = os.environ.get("DEBUG", "False") == "True"
+# ALLOWED_HOSTS = ["*"]  # Or limit to your Vercel domain
 
 # DATABASES = {
 #     "default": {
@@ -200,6 +200,9 @@ AUTH_USER_MODEL = "accounts.CustomUser"
 
 STATIC_URL = "/static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+if os.environ.get("VERCEL"):
+    STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
+
 
 
 MIDDLEWARE.insert(1, "whitenoise.middleware.WhiteNoiseMiddleware")
