@@ -29,14 +29,14 @@ if os.path.exists(BASE_DIR / ".env"):
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG", "False") == "True"
 
 # ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ["*"]  # Or specify your Vercel domain here
+ALLOWED_HOSTS = ['food-ord-app-be.onrender.com']  # Or specify your Vercel domain here
 
 
 
