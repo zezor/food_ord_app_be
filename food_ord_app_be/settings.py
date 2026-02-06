@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 
 from pathlib import Path
 import os
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 import dj_database_url  # We'll install this
 
 
@@ -21,21 +21,22 @@ import dj_database_url  # We'll install this
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
+if os.path.exists(BASE_DIR / ".env"):
+    from dotenv import load_dotenv
+    load_dotenv()
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-5gr_n&0!n#6kf49#6-hkxqo*7!l+8&wpip7vl%1c-wr2_bu_b('
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = os.environ.get("DEBUG", "False") == "True"
 
 # ALLOWED_HOSTS = []
-ALLOWED_HOSTS = [
-    ".vercel.app",
-    "localhost",
-    "127.0.0.1"
-]
+ALLOWED_HOSTS = ["*"]  # Or specify your Vercel domain here
 
 
 
@@ -60,15 +61,17 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
-    
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
 ]
+
 
 CORS_ALLOW_ALL_ORIGINS = True
 
@@ -102,7 +105,8 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'food_ord_app_be.asgi.application'
+WSGI_APPLICATION = 'food_ord_app_be.wsgi.application'
+
 
 
 # Database
@@ -115,7 +119,7 @@ WSGI_APPLICATION = 'food_ord_app_be.asgi.application'
 #     }
 # }
 
-load_dotenv()
+# load_dotenv()
 
 # DATABASES = {
 #     "default": {
@@ -199,10 +203,10 @@ USE_TZ = True
 AUTH_USER_MODEL = "accounts.CustomUser"
 
 STATIC_URL = "/static/"
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-if os.environ.get("VERCEL"):
-    STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 
 
-MIDDLEWARE.insert(1, "whitenoise.middleware.WhiteNoiseMiddleware")
+
