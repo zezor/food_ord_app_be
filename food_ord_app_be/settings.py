@@ -155,6 +155,7 @@ WSGI_APPLICATION = 'food_ord_app_be.wsgi.application'
 #     )
 # }
 
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 DATABASES = {
