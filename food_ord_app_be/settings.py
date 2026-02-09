@@ -36,7 +36,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 DEBUG = os.environ.get("DEBUG", "False") == "True"
 
 # ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['food-ord-app-be.onrender.com']  # Or specify your Vercel domain here
+ALLOWED_HOSTS = ['https://food-ord-app-be.onrender.com']  # Or specify your Vercel domain here
 
 
 
