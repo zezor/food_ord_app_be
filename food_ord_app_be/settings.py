@@ -36,7 +36,11 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 DEBUG = os.environ.get("DEBUG", "False") == "True"
 
 # ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['https://food-ord-app-be.onrender.com']  # Or specify your Vercel domain here
+ALLOWED_HOSTS = [
+    "food-ord-app-be.onrender.com",
+    "localhost",
+    "127.0.0.1",
+]
 
 
 
@@ -76,8 +80,9 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS = [
     "https://food-ord-app-fe.vercel.app",
-    
+    "http://localhost",   # ✅ ADD THIS
 ]
+
 
 # CORS_ALLOWED_ORIGINS = [
 #     "http://localhost:3000",
