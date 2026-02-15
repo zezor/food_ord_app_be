@@ -38,7 +38,7 @@ DEBUG = os.environ.get("DEBUG", "False") == "True"
 # ALLOWED_HOSTS = []
 ALLOWED_HOSTS = [
     "food-ord-app-be.onrender.com",
-    "localhost",
+    "localhost:5174",
     "127.0.0.1",
 ]
 
@@ -80,7 +80,7 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS = [
     "https://food-ord-app-fe.vercel.app",
-    "http://localhost",   # ✅ ADD THIS
+    "http://localhost:5174",   # ✅ ADD THIS
 ]
 
 
