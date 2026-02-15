@@ -75,15 +75,24 @@ class OrderItemSerializer(serializers.ModelSerializer):
 class OrderSerializer(serializers.ModelSerializer):
     items = OrderItemSerializer(many=True)
 
-    college = serializers.SlugRelatedField(
-        queryset=College.objects.all(),
-        slug_field="name"
+    # college = serializers.SlugRelatedField(
+    #     queryset=College.objects.all(),
+    #     slug_field="name"
+    # )
+
+    # department = serializers.SlugRelatedField(
+    #     queryset=Department.objects.all(),
+    #     slug_field="name"
+    # )
+
+    college = serializers.PrimaryKeyRelatedField(
+    queryset=College.objects.all()
     )
 
-    department = serializers.SlugRelatedField(
-        queryset=Department.objects.all(),
-        slug_field="name"
+    department = serializers.PrimaryKeyRelatedField(
+        queryset=Department.objects.all()
     )
+
 
     class Meta:
         model = Order
