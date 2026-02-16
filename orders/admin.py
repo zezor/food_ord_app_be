@@ -3,7 +3,7 @@ from .models import Order, OrderItem
 
 # Register your models here.
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('id', 'user', 'total_amount', 'status', 'created_at', 'ordered_at', 'order_type', 'department', 'college')
+    list_display = ('id', 'user', 'total_amount', 'status', 'created_at', 'ordered_at', 'order_type', 'department', 'college', 'note')
     list_filter = ('status', 'order_type', 'created_at', 'department', 'college')
     search_fields = ('user__email', 'id')
 admin.site.register(Order, OrderAdmin)
