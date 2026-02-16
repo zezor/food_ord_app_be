@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from .models import CustomUser
-from django.contrib.auth.models import Group
+
 
 
 class CustomUserAdmin(BaseUserAdmin):
@@ -38,6 +38,3 @@ class CustomUserAdmin(BaseUserAdmin):
 
 admin.site.register(CustomUser, CustomUserAdmin)
 
-
-
-admin.site.register(Group)
